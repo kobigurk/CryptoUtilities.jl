@@ -1,0 +1,4 @@
+[deps]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+ZODA = "91f978b0-9f74-4008-95d3-85d3c1cb6962"
+BinaryFields = "0fee9d7f-8397-4f0d-9ec6-117db1666467"

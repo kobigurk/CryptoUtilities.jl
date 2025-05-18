@@ -9,6 +9,7 @@ encodings, and Merkle trees with multiopening proofs.
 - **Binary Fields**: Efficient arithmetic operations over binary fields.
 - **Reed-Solomon Encoding**: Encoding and decoding using Reed-Solomon codes w/ `O(n log n)` cost, implementing [this paper](https://ieee-focs.org/FOCS-2014-Papers/6517a316.pdf).
 - **Merkle Trees**: Construction, proof generation, and verification for Merkle tree batched openings.
+- **ZODA Data Availability**: Reference implementation of the ZODA construction using Reed--Solomon encoding and Merkle tree commitments.
 
 ## Installation
 
@@ -64,6 +65,18 @@ using BatchedMerkleTree
 leaves = [rand(UInt16, 4) for _ in 1:16]
 tree = build_merkle_tree(leaves)
 root = get_root(tree)
+```
+
+### ZODA Data Availability
+
+```julia
+using ZODA, BinaryFields
+
+message = rand(BinaryElem16, 8)
+inst = zoda_setup(BinaryElem16, 8, 16, message)
+proof = zoda_prove(inst, [1, 4])
+leaves = [inst.encoded[i] for i in (1,4)]
+verified = zoda_verify(inst, proof, [1, 4], leaves)
 ```
 
 ## License
